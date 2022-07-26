@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Auction.Desktop.Model.AuctionApiService">
+    <Position X="24.5" Y="2.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>ggIAAAAAAAAAIEgAAAAAAAAAAAAAQAAAAAAQQABAAAA=</HashCode>
+      <FileName>Model\AuctionApiService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Desktop.Model.NetworkException">
+    <Position X="20.25" Y="11" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\NetworkException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Desktop.View.ItemEditorWindow" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\ItemEditorWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Auction.Desktop.View.LoginWindow" BaseTypeListCollapsed="true">
+    <Position X="16" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\LoginWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Auction.Desktop.View.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Auction.Desktop.ViewModel.BuildingImageConverter" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="9" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Converters\BuildingImageConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Auction.Desktop.ViewModel.DelegateCommand" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="5.75" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\DelegateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Auction.Desktop.ViewModel.ItemViewModel">
+    <Position X="11" Y="8.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAACohQAAAAgggAEAABAAAQAAAAAAAAIAAAAgQAEAAA=</HashCode>
+      <FileName>ViewModel\ItemViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Desktop.ViewModel.LoginViewModel">
+    <Position X="1.5" Y="6.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAAAAAAAQAAAAAAAAAAAAAAgAAQAAAACAAAI=</HashCode>
+      <FileName>ViewModel\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Desktop.ViewModel.MainViewModel">
+    <Position X="6.25" Y="7.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAEEAAEBAA6IBQAFIIFAAAABAgMAAAAKAQQAoAAYA=</HashCode>
+      <FileName>ViewModel\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Desktop.ViewModel.MessageEventArgs">
+    <Position X="16.75" Y="11" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>ViewModel\MessageEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Desktop.ViewModel.ViewModelBase">
+    <Position X="12.25" Y="4.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAoAAAAAAAgAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Auction.Desktop.App">
+    <Position X="25.25" Y="6" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAIAAAAAAAQEAQAAAAACAgggEABAAAgEQAAAAAAEA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

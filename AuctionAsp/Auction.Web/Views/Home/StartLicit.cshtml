@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.Http
+@model LicitVM
+
+@{
+    ViewData["Title"] = "Licitálás";
+}
+@if (Model == null)
+{
+    <p>tárgy betöltése sikertelen</p>
+}
+else
+{
+
+    <h1 class="display-4">Licitálás a kiválasztott tárgyra</h1>
+
+    <div class="row-md-4">
+        @*@if (Model.Item != null && Model.Item.Name != null)
+        {
+            <p>A kiválasztott tárgy neve: @Model.Item.Name</p>
+        }*@
+        <form asp-controller="Home" asp-action="CommitLicit" asp-route-ItemId="@Model.Item.Id" asp-route-ItemName="@Model.Item.Name">
+            <div class="text-danger">@Html.ValidationSummary(false, "")</div>
+            @*<div class="form-group">
+                <label asp-for="ItemId" class="control-label">Id:</label>
+                <input asp-for="ItemId" class="form-control" />
+                <span asp-validation-for="ItemId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Value" class="control-label">Itt írja be az összeget licitáláshoz:</label>
+                <input asp-for="Value" class="form-control" />
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="LICITÁLÁS" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    
+        @if (Model.Item != null)
+        {
+
+            //@Html.Action("Details", new { ItemId = Model.ItemId })
+            //Context.Response.Redirect(this)
+            <partial name="Details" view-data='@new ViewDataDictionary(ViewData) { { "ActualLicit", Model.ActualLicit } }' model="@Model.Item" />
+
+        }
+        else
+        {
+            <p>nem sikerült betölteni a tárgy részletes adatait</p>
+        }
+    
+    @*
+        <td>
+            <img src="@Url.Action("ImageForItem", new {ItemId = Model.Id})" />
+            betöltjük az épület képét is
+        </td>
+        <p>leírás: @Model.Name</p>
+        <p>leírás: @Model.Description</p>
+        <p>meghirdetés dátuma: @Model.AuctionStartDate</p>
+        <p>lezárás dátuma: @Model.DateOfClosing</p>
+        @if (ViewBag.ActualLicit == null)
+        {
+            <p>Az aktuális licit nem érhető el</p>
+            <p>A KEZDŐlicit értéke(NEM AKTUÁLIS): @Model.StartingLicit</p>
+        }
+        else
+        {
+            <p>aktuális licit: @ViewBag.ActualLicit</p>
+            <p>( kezdő licit : @Model.StartingLicit )</p>
+        }
+
+        }*@
+}
+@*<a asp-controller="Home" asp-action="Index">Vissza  a főoldalra</a>*@
+@section Scripts
+{
+    @* jQuery Validation használata a kliens oldali validációra *@
+    <partial name="_ValidationScriptsPartial" />
+}

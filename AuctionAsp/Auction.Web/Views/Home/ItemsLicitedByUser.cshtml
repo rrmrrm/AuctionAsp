@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ItemLicitedByUserVM>
+
+<p>Tárgyak, amikre a felhasználó licitált:</p>
+@if (Model == null)
+{
+    <p>A lista üres.</p>
+}
+else
+{
+    <table>
+        @foreach (ItemLicitedByUserVM il in Model)
+        {
+            <tr style="outline: thin solid">
+                <td>
+                    <a asp-controller="Home" asp-action="Details" asp-route-ItemId="@il.ItemId">tárgy neve: @il.ItemName</a>
+                    <p>hirdető felhasználóneve: @il.ItemHirdetoName</p>
+                    <p>aktuális licit: @il.ActiveLicit</p>
+                    @if (il.IsActive())
+                    {<p>MÉG AKTTÍV</p>}
+                    else { <p>LICITÁLÁS LEZÁRVA</p>}
+                    @if (il.IsUserLeading)
+                    {<p>A FELHASZNÁLÓ VEZETI A LICITET</p>}
+                    else { <p>VALAKI MÁS VEZETI A LICITET</p>}
+                    <p>tárgy neve: @il.ItemName</p>
+                    <p>tárgy hirdetése: @il.AuctionStartDate</p>
+                    <p>licit zárás: @il.AuctionCloseDate</p>
+                    <p>hirdető neve: @il.ItemHirdetoName</p>
+                    @if (il.IsActive())// ha a licitálás még nem járt le, akkor licitálhat
+                    {
+                        <a asp-controller="Home" asp-action="StartLicit" asp-route-ItemId="@il.ItemId">LICITÁLÁS</a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}

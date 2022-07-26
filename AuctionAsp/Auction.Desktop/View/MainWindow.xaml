@@ -1,0 +1,149 @@
+﻿<Window x:Class="Auction.Desktop.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:viewModel="clr-namespace:Auction.Desktop.ViewModel"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        mc:Ignorable="d"
+        Title="Meghirdetett Targyak" Height="800" Width="800">
+    <Window.Resources>
+        <viewModel:BuildingImageConverter x:Key="buildingImageConverter"/>
+        <viewModel:BooleanToIsActiveConverter x:Key="booleanToIsActiveConverter"/>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContentRendered">
+            <i:InvokeCommandAction Command="{Binding RefreshItemsCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Refresh lists" Command="{Binding RefreshItemsCommand}" />
+            <MenuItem Header="Profil" HorizontalAlignment="Right" >
+                <MenuItem Header="Kijelentkezés" Command="{Binding LogoutCommand}"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                <GroupBox>
+                    <GroupBox.Header>
+                        <Label Content="Licit Items:" />
+                    </GroupBox.Header>
+                    <DataGrid ItemsSource="{Binding Items}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction
+                                    Command="{Binding SelectCommand}"
+                                    CommandParameter="{
+                                        Binding Path=SelectedItem,
+                                        RelativeSource={
+                                            RelativeSource
+                                            AncestorType={x:Type DataGrid},
+                                            AncestorLevel=1}}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding ItemId}"  />
+                            <DataGridTextColumn Binding="{Binding ItemName}" />
+                            <DataGridTextColumn Binding="{Binding AuctionStartDate}"  />
+                            <DataGridTextColumn Binding="{Binding AuctionCloseDate}"  />
+                            <DataGridTextColumn Binding="{Binding ItemHirdetoName}"/>
+                            <DataGridTextColumn Binding="{Binding CategoryId}" />
+                            <DataGridTextColumn Binding="{Binding ActiveLicit}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+            </ScrollViewer>
+            <Grid Grid.Row="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Command="{Binding CloseLicitForSelectedItem}">Kiválasztott licit lezárása</Button>
+
+                <Button Grid.Row="1" Grid.Column="1" Command="{Binding EditItemCommand}">Új tárgy hirdetése</Button>
+            </Grid>
+            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0">SELECTED ITEM DETAILS</Label>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Név" ></Label>
+                
+                    <Label Grid.Row="2" Grid.Column="0" Content="{Binding ItemDetails.item.Name}" ></Label>
+                    <Label Grid.Row="2" Grid.Column="1" Content="{Binding ItemDetails.winner.UserName}" ></Label>
+
+                    <!--<TextBlock Grid.Row="5"  Text="{Binding ItemDetails.item.IsActive}" ></TextBlock> -->
+                    
+                    <Label Grid.Row="4" Grid.Column="0">Lehet-e mégLicitálni:</Label>
+                    <Label Grid.Row="4" Grid.Column="1" Content="{Binding ItemDetails.item.IsActive, Converter={StaticResource booleanToIsActiveConverter}}"></Label>
+
+                    
+                    <Label Grid.Row="6" Grid.Column="0">kép</Label>
+                    <Image Grid.Row="6" Grid.Column="1" Source="{Binding ItemDetails.item.Picture, TargetNullValue={x:Null}}" MaxHeight="48" MaxWidth="48" />
+
+                    <!-- képmegjelenítőt használunk konverzióval -->
+                    <!--<Image Height="100" Width="Auto" Source="{Binding ItemDetails.item.Picture, Converter={StaticResource buildingImageConverter}}" /> -->
+
+                    <Label Grid.Row="7" Grid.Column="0">Leírás</Label>
+                    <Label Grid.Row="7" Grid.Column="1" Content="{Binding ItemDetails.item.Description}"/>
+
+                    <Label Grid.Row="8" Grid.Column="0">KezdőLicit</Label>
+                    <Label Grid.Row="8" Grid.Column="1" Content="{Binding ItemDetails.item.StartingLicit}"></Label>
+
+                    <Label Grid.Row="9" Grid.Column="0">Licit zárás:</Label>
+                    <Label Grid.Row="9" Grid.Column="1" Content="{Binding ItemDetails.item.DateOfClosing}" Grid.ColumnSpan="3"></Label>
+
+                    <Label Grid.Row="10" Grid.Column="0">Kategória</Label>
+                    <Label Grid.Row="10" Grid.Column="1" Content="{Binding ItemDetails.item.Category.Name}"></Label>
+                </Grid>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="3" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+            <Grid >
+                <GroupBox>
+                    <GroupBox.Header>
+                        <Label Content="Licits for selected item:"/>
+                    </GroupBox.Header>
+                    <DataGrid ItemsSource="{Binding ItemDetails.licits}"
+                    VerticalContentAlignment="Stretch"  IsReadOnly="True"
+                    AutoGenerateColumns="False" HeadersVisibility="None" Margin="0,0,25,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Date}" Width="*" />
+                            <DataGridTextColumn Binding="{Binding UserName}" Width="*" />
+                            <DataGridTextColumn Binding="{Binding Value}" Width="*" />
+                            <DataGridTextColumn Binding="{Binding Id}" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
+</Window>

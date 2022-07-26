@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Auction.Webapi</name>
+    </assembly>
+    <members>
+        <member name="T:Auction.Webapi.Controllers.AccountController">
+            <summary>
+            Felhasználókezelést biztosító vezérlő.
+            </summary>
+        </member>
+        <member name="F:Auction.Webapi.Controllers.AccountController._signInManager">
+            <summary>
+            Authentikációs szolgáltatás.
+            </summary>
+        </member>
+        <member name="M:Auction.Webapi.Controllers.AccountController.#ctor(Microsoft.AspNetCore.Identity.UserManager{Auction.Persistence.User},Microsoft.AspNetCore.Identity.SignInManager{Auction.Persistence.User})">
+            <summary>
+            Vezérlő példányosítása.
+            </summary>
+        </member>
+        <member name="M:Auction.Webapi.Controllers.AccountController.Login(Auction.Persistence.LoginDTO)">
+            <summary>
+            Bejelentkezés.
+            </summary>
+            <param name="loginDTO">Bejelentkezési adatok.</param>
+        </member>
+        <member name="M:Auction.Webapi.Controllers.AccountController.Logout">
+            <summary>
+            Kijelentkezés.
+            </summary>
+        </member>
+        <member name="T:Auction.Webapi.Controllers.ItemsController">
+            <summary>
+            A hirdetőknek szolgáltatja a meghirdetett tárgyaikat
+            </summary>
+        </member>
+        <member name="M:Auction.Webapi.Controllers.ItemsController.#ctor(Microsoft.AspNetCore.Identity.UserManager{Auction.Persistence.User},Auction.Persistence.Services.ApiService)">
+            <summary>
+            Vezérlő példányosítása.
+            </summary>
+            <param name="_serv">ApiService az adatbázis kezeléséhez.</param>
+            <param name="_userManager">Bejelentkezett felhasználó lekérdezéséhez.</param>
+        </member>
+        <member name="M:Auction.Webapi.Controllers.ItemsController.GetHirdetett">
+            <summary>
+            a hirdető által hirdetett tárgyak listázása
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Auction.Webapi.Controllers.ItemsController.GetItem(System.Int32)">
+            <summary>
+             a felhasználó lekérheti az általa meghirdetett egyik tárgyat(kategóriával és képpel) azonosító alapján.
+             ha nem ő hirdette, akkor unauthorized státusszal térünk vissza
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Auction.Webapi.Controllers.ItemsController.GetCategories">
+            <summary>
+            kategóriák
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Auction.Webapi.Controllers.ItemsController.GetItemDetails(System.Int32)">
+            <summary>
+            a megadott ayonosítóval rendelkező tárgy részletes adatai képpel, és
+             az összes rá érkezett licittel(dátum, név, összeg) együtt.
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Auction.Webapi.Controllers.ItemsController.PostItem(Auction.Persistence.ItemDTO)">
+            <summary>
+            uj targy felvitéle(tnev,kategoria,leiras,kezdlicit,lezarDatum, kep, +kategoria+hirdeto)
+            </summary>
+            <param name="itemDto"></param>
+        </member>
+        <member name="M:Auction.Webapi.Controllers.ItemsController.CloseLicit(Auction.Persistence.ItemAllLicitsDTO)">
+            <summary>
+             a licit azonnali lezárására(csak ha valaki már licitált rá, ekkor az aktuális licitáló viszi a tárgyat)
+             Ha a tárgy más felhasználóé, vagy id-je nem található -> Unathorized("nem ön targya"),
+             Ha nem licitaltak ra -> Forbidden,"Hiba: nem licitaltak meg ra"
+             Ha adatbazis frissitese sikertelen -> 500internalserverError
+            </summary>
+            <param name="itemDTO"></param>
+        </member>
+        <member name="M:Auction.Persistence.ItemAllLicitsDTO.FromItem(Auction.Persistence.Item,Auction.Persistence.User)">
+            <summary>
+            Item -> ItemAllLicitsDTO
+            </summary>
+            <param name="ent">item</param>
+            <param name="_winner">nyertes felhasznalo. default: null</param>
+            <returns></returns>
+        </member>
+        <member name="M:Auction.Persistence.Services.ApiService.ItemsWithoutLicit">
+            <summary>
+            Tárgyak DTO-ként, amikre nem szavaztak. 
+            Minden visszaadott ItemLicitDTO  ActiveLicit property-j az Item Kezdőlicitje(StartingLicit) lesz
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Auction.Persistence.Services.ApiService.GetHirdetettByHirdetoUName(System.String)">
+            <summary>
+            hirdető által hirdetett tárgyak aktuális licittel
+            </summary>
+            <param name="hirdetoName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Auction.Persistence.Services.ApiService.GetHirdetett2">
+            <summary>
+            meghirdetett tárgyak az aktuális licittel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Auction.Persistence.Services.ApiService.addItem(Auction.Persistence.Item)">
+            <summary>
+            add item t Items Dbset
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Auction.Persistence.Services.ApiService.GetItemWithCategAndHirdeto(System.Int32)">
+            <summary>
+            targy kategorival együtt
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Auction.Persistence.Services.ApiService.GetCategories">
+            <summary>
+            a kategóriák CategoryDTO-vá konvertálva
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Auction.Persistence.Services.ApiService.IsUserHirdetoOf(System.String,System.Int32)">
+            <summary>
+            ha nincs ilyen azonositójú tárgy, vagy a tárgyat nem a megadott felhasználónevű user hirdette, akkor hamisat ad vissz,
+            amúgy igazat
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Auction.Persistence.Services.ApiService.GetItemById(System.Int32)">
+            <summary>
+            kikeresi a megadott azonosítójú tárgyat. 
+            null-t ad vissza, ha nincs ilyen
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Auction.Persistence.Services.ApiService.IsCategoryExists(System.Int32)">
+            <summary>
+            Megnézi, hogy létezik-e  a megadott azonosítóval rendelkező kategória
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Auction.Persistence.Services.ApiService.GetItemWithAllLicits(System.Int32)">
+             <summary>
+             az id azonosítójú tárgyat visszaadja ItemAllLicitsDTO-ként, miután feltöltötte a tárgy licitjeinek listáját
+             hibát dob, ha nincs ilyen azonosítójú tárgy
+            
+             tárgyat kiválasztva megkapjuk az összes információt képpelegyütt,
+             valamint az összes addigi licitet (dátum, név, összeg). 
+             Lehetőségünk van a licit azonnalilezárására(csak ha valaki már licitált rá, ekkor az aktuális licitáló viszi a tárgyat)
+            
+             </summary>
+             <param name="id"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Auction.Persistence.Services.ApiService.CloseLicit(System.Int32)">
+            <summary>
+            ha  nem találja a tárgyat, akkor InvalidOperaationt dob(.Single());
+            megkeresi az id azonosítójú tárgyat, feltölti a navigational property-jeit,
+            Ezután megkeresi a licitet vezető felhasználót(itt feltételezzük, hogy licitáltak a tárgyra, ezt a controllerben ellenőrízni kell)
+            lezárja a szavazást(item.DateOfClosing beállításával);
+            A tárgy sikeres frissítése esetén ItemAllLicitDTO típusban küldjük vissza a lezárt licitálást és a nyertes felhaasználó adatait,
+             ha nem sikeres, akkor DbUpdateException-t dob
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
