@@ -36,7 +36,7 @@ namespace Auction
             // Dependency injection beállítása az adatbázis kontextushoz
             services.AddDbContext<AuctionContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnection"),
-                    x => x.MigrationsAssembly("Auction.Persistence")));
+                    x => x.MigrationsAssembly("Auction.Web")));
             /*
             switch (dbType)
             {

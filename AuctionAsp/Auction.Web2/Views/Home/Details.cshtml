@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Http
+@model Auction.Persistence.Item
+
+@{
+    ViewData["Title"] = "meghirdetett tárgy";
+}
+@if (Model == null)
+{
+    <p>tárgy részletes adatait nem sikerült betölteni</p>
+}
+else
+{
+    <img src="@Url.Action("ImageForItem",     new {itId = Model.Id})" class="contentImage" />
+
+    <p>tárgy neve: @Model.Name</p>
+    <p>leírás: @Model.Description</p>
+    <p>meghirdetés dátuma: @Model.AuctionStartDate</p>
+    <p>lezárás dátuma: @Model.DateOfClosing</p>
+    @if (ViewBag.ActualLicit == null)
+    {
+        <p>Az aktuális licit nem érhető el</p>
+        <p>A KEZDŐlicit értéke(NEM BIZTOS HOGY EZ AZ AKTUÁLIS LICIT): @Model.StartingLicit EUR</p>
+    }
+    else
+    {
+        <p>aktuális licit: @ViewBag.ActualLicit EUR</p>
+        <p>(kezdő licit : @Model.StartingLicit EUR)</p>
+    }
+
+}
+<a asp-controller="Home" asp-action="Index">Vissza  a főoldalra</a>

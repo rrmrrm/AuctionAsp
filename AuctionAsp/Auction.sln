@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Persistence", "Auction.Persistence\Auction.Persistence.csproj", "{31E2C874-D8C3-40AC-BC2F-7F12DC3F9D14}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Web", "Auction.Web\Auction.Web.csproj", "{7FF801C6-4CBD-417D-B8F9-CD23D535CB18}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Webapi", "Auction.Webapi\Auction.Webapi.csproj", "{F780286D-D533-4309-B788-59A800AAAE53}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Desktop", "Auction.Desktop\Auction.Desktop.csproj", "{7EC6CB59-C13F-467E-BB4A-3D4E9970107D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.WebApi.Test", "Auction.WebApi.Test\Auction.WebApi.Test.csproj", "{C3DCE348-5ECE-4480-A9FC-9A9500D4EED3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Persistence2", "Auction.Persistence2\Auction.Persistence2.csproj", "{284BCC66-923A-451F-B170-73072216A2AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Web2", "Auction.Web2\Auction.Web2.csproj", "{FC68E4C7-84C8-4F55-86F0-B77FFB80B8C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{31E2C874-D8C3-40AC-BC2F-7F12DC3F9D14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31E2C874-D8C3-40AC-BC2F-7F12DC3F9D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31E2C874-D8C3-40AC-BC2F-7F12DC3F9D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31E2C874-D8C3-40AC-BC2F-7F12DC3F9D14}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7FF801C6-4CBD-417D-B8F9-CD23D535CB18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7FF801C6-4CBD-417D-B8F9-CD23D535CB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7FF801C6-4CBD-417D-B8F9-CD23D535CB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7FF801C6-4CBD-417D-B8F9-CD23D535CB18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F780286D-D533-4309-B788-59A800AAAE53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F780286D-D533-4309-B788-59A800AAAE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F780286D-D533-4309-B788-59A800AAAE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +31,14 @@ Global
 		{C3DCE348-5ECE-4480-A9FC-9A9500D4EED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3DCE348-5ECE-4480-A9FC-9A9500D4EED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3DCE348-5ECE-4480-A9FC-9A9500D4EED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{284BCC66-923A-451F-B170-73072216A2AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{284BCC66-923A-451F-B170-73072216A2AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{284BCC66-923A-451F-B170-73072216A2AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{284BCC66-923A-451F-B170-73072216A2AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC68E4C7-84C8-4F55-86F0-B77FFB80B8C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC68E4C7-84C8-4F55-86F0-B77FFB80B8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC68E4C7-84C8-4F55-86F0-B77FFB80B8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC68E4C7-84C8-4F55-86F0-B77FFB80B8C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

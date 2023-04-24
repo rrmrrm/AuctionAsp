@@ -1,0 +1,104 @@
+﻿@using Microsoft.AspNetCore.Http
+@model PageFilterVM
+
+@{
+    ViewData["Title"] = "Meghirdetett tárgyak";
+}
+
+<h1 class="display-4">Utoljára meghirdetett licitek</h1>
+
+<div class="row-md-4">
+    @*
+        <div class="form-group">
+            <form asp-controller="Home" asp-action="Index" method="post">
+                <button asp-route="NameFilter">Submit</button>
+                <input type="text" asp-route="NameFilter">
+            </form>
+
+        </div>
+    *@
+    <form asp-controller="Home" asp-action="Index">
+        @*<div class="text-danger">@Html.ValidationSummary(false, "Hibás szűrőfeltételek")</div>*@
+        <p>Szűrhet a tárgyakra:</p>
+        <div class="form-group">
+            <label asp-for="NameFilter" class="control-label">Tárgy neve tartalmazza ezt a szöveget:</label>
+            <input asp-for="NameFilter" class="form-control" />
+            <span asp-validation-for="NameFilter" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PageNum" class="control-label">Tárgyak listájának lapozásához oldalszám:</label>
+            <input asp-for="PageNum" class="form-control" />
+            <span asp-validation-for="PageNum" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Categorical" class="control-label">Rendezés kategória szerint:</label>
+            <input asp-for="Categorical" class="form-control" />
+            <span asp-validation-for="Categorical" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="OnlyActive" class="control-label">Csak a licitálható tárgyak legyenek láthatók:</label>
+            <input asp-for="OnlyActive" class="form-control" />
+            <span asp-validation-for="OnlyActive" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="szűrés" class="btn btn-primary" />
+        </div>
+    </form>
+    @if (Model != null)
+    {
+        @if (Model.PageNum != null && Model.PageNum > 0)
+        {
+            <a asp-controller="Home" asp-action="Index" asp-route-Categorical="@Model.Categorical" asp-route-OnlyActive="@Model.OnlyActive" asp-route-PageNum=@(Model.PageNum - 1) asp-route-NameFilter=@Model.NameFilter>előző oldal</a>
+        }
+        @*ha üres a lista, akkor nem jelenítjük meg a következő oldal linkjét:*@
+        @if (ViewBag.Items != null && ViewBag.Items.Count > 0)
+        {
+            @if (Model.PageNum != null)
+            {
+                <a asp-controller="Home" asp-action="Index" asp-route-Categorical="@Model.Categorical" asp-route-OnlyActive="@Model.OnlyActive" asp-route-PageNum=@(Model.PageNum + 1) asp-route-NameFilter=@Model.NameFilter>kövekező oldal</a>
+            }
+            else
+            {
+                @*ekkor pageNum-ot 0-nak tekintjük*@
+                <a asp-controller="Home" asp-action="Index" asp-route-Categorical="@Model.Categorical" asp-route-OnlyActive="@Model.OnlyActive" asp-route-PageNum=1 asp-route-NameFilter=@Model.NameFilter>kövekező oldal</a>
+            }
+        }
+    }
+</div>
+
+<p>Meghirdetett Tárgyak:</p>
+@if (ViewBag.Items == null || ViewBag.Items.Count == 0)
+{
+    <p>Nincs megjeleníhető tárgy.</p>
+}
+else
+{
+    <table>
+        @foreach (ItemLicitModel il in ViewBag.Items)
+        {
+            <tr style="outline: thin solid">
+                <td>
+                    <a asp-controller="Home" asp-action="Details" asp-route-ItemId="@il.ItemId">tárgy neve: @il.ItemName</a>
+                    <p>hirdető felhasználóneve: @il.ItemHirdetoName</p>
+                    <p>aktuális licit: @il.ActiveLicit</p>
+                    <p>hirdetés dátuma: @il.AuctionStartDate</p>
+                    <p>eddig lehet licitálni a tárgyra: @il.AuctionCloseDate</p>
+                    @if (il is ItemLicitVM)
+                    {
+                        <p>kategória: @((il as ItemLicitVM).CategoryName)</p>
+                    }
+                    @if (User.Identity.IsAuthenticated && il.IsActive())// ha be van jelentkezve és a licitálás még nem járt le
+                    {
+                        <a asp-controller="Home" asp-action="StartLicit" asp-route-ItemId="@il.ItemId">LICITÁLÁS</a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+@section Scripts
+{
+    @* jQuery Validation használata a kliens oldali validációra *@
+    <partial name="_ValidationScriptsPartial" />
+}
+

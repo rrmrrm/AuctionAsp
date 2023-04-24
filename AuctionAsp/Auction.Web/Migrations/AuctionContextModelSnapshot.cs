@@ -4,16 +4,14 @@ using Auction.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Auction.Persistence.Migrations
+namespace Auction.Web.Migrations
 {
     [DbContext(typeof(AuctionContext))]
-    [Migration("20210516112546_sokadik")]
-    partial class sokadik
+    partial class AuctionContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

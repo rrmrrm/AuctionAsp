@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Auction.Persistence.AuctionContext">
+    <Position X="1" Y="11" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAQAAEAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AuctionContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Persistence.Category">
+    <Position X="3.75" Y="15" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Persistence.CategoryDTO">
+    <Position X="9.25" Y="5.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAACAAQAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>CategoryDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Persistence.DbInitializer">
+    <Position X="5" Y="8" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAQAAAIAAAEAgAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>DbInitializer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="vC" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Auction.Persistence.Item">
+    <Position X="6.75" Y="12.75" Width="2.75" />
+    <AssociationLine Name="Licits" Type="Auction.Persistence.Licit" FixedFromPoint="true">
+      <Path>
+        <Point X="8.562" Y="16.036" />
+        <Point X="8.562" Y="16.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACghAAAAAgAgAIECAAAQwAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Item.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Category" />
+      <Property Name="Hirdeto" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Licits" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Auction.Persistence.ItemDTO">
+    <Position X="4.75" Y="3.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACghAAAAAgAAAIECAAAAQAAAAAAAAIAAAAAAAACAA=</HashCode>
+      <FileName>ItemDTO.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Category" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Auction.Persistence.Licit">
+    <Position X="8.25" Y="16.75" Width="2.25" />
+    <AssociationLine Name="Item" Type="Auction.Persistence.Item">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.64" Y="0.135" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAgAAAAAgEAAAAAAABAAAgAAAAAAA=</HashCode>
+      <FileName>Licit.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Item" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Auction.Persistence.LicitDTO">
+    <Position X="1" Y="8.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAAAAAAAAAAAAAAAAAAAABAQAgAAAAAAA=</HashCode>
+      <FileName>LicitDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Persistence.LoginDTO">
+    <Position X="1.5" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>LoginDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Persistence.User">
+    <Position X="10.75" Y="13.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction.Persistence.UserDTO">
+    <Position X="1" Y="5.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAQAQAACAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>UserDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.AspNetCore.Identity.IdentityUser&lt;TKey&gt;" Collapsed="true">
+    <Position X="10.25" Y="12" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
